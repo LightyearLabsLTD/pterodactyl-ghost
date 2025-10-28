@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:22-alpine
 
 RUN apk --update --no-cache add curl python3 python3-dev ca-certificates \
 	&& adduser -D -h /home/container container

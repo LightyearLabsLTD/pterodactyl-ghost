@@ -8,7 +8,8 @@ rm -rf /mnt/server/ghost /mnt/server/.ghost /home/container/ghost || true
 
 echo "🧰 Installing runtime dependencies..."
 apk add --no-cache \
-  python3 make g++ vips-dev build-base autoconf automake libtool \
+  python3 py3-pip py3-setuptools py3-wheel \
+  make g++ vips-dev build-base autoconf automake libtool \
   nasm libc6-compat bash curl su-exec ca-certificates
 
 echo "🧰 Installing dependencies..."

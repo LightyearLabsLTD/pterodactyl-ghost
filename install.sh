@@ -6,6 +6,11 @@ cd /mnt/server
 echo "🧹 Cleaning previous setup..."
 rm -rf /mnt/server/ghost /mnt/server/.ghost /home/container/ghost || true
 
+echo "🧰 Installing runtime dependencies..."
+apk add --no-cache \
+  python3 make g++ vips-dev build-base autoconf automake libtool \
+  nasm libc6-compat bash curl su-exec ca-certificates
+
 echo "🧰 Installing dependencies..."
 apk --no-cache add sudo curl
 apk add --no-cache 'su-exec>=0.2'
@@ -49,6 +54,9 @@ echo "🚀 Installing Ghost..."
 su -s /bin/ash "nobody" -c "ghost install local --no-start --no-enable --no-prompt --dir /home/container/ghost --process local"
 
 unlink /.ghost
+
+echo "📦 Installing sharp..."
+npm install -g sharp --unsafe-perm --no-audit
 
 echo "📦 Moving Ghost to server directory..."
 mv /home/container/ghost /mnt/server/
